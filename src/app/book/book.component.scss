@@ -1,0 +1,28 @@
+.book{
+  position: relative;
+  height: 150px;
+  width: 100px;
+  background-repeat:no-repeat ;
+  background-size: contain;
+  transition-duration: 500ms;
+}
+.book:hover{
+  cursor: pointer;
+  scale: 1.2;
+}
+#book-details{
+  font-size: 10px;
+  height: 100%;
+  position: relative;
+  display: none;
+  z-index: 1;
+  background-color: rgba(200,100,0,.8);
+  transition-duration: 400ms;
+}
+.book:hover #book-details{
+  color: black;
+  display: block;
+  cursor: pointer;
+  scale: 1;
+  opacity: 100;
+}
