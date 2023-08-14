@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './requests.component.html',
   styleUrls: ['./requests.component.scss']
 })
-export class RequestsComponent {
 
+export class RequestsComponent {
+  option:any='option1';
 }

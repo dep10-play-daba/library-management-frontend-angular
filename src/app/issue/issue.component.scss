@@ -1,10 +1,10 @@
-#tbl-request thead tr th:first-child,
-#tbl-request thead tr td:first-child{
+#tbl-issue thead tr th:first-child,
+#tbl-issue thead tr td:first-child{
   width: 70px;
 }
 
-#tbl-request thead tr th:last-child,
-#tbl-request thead tr td:last-child{
+#tbl-issue thead tr th:last-child,
+#tbl-issue thead tr td:last-child{
   width: 70px;
 }
 
@@ -13,7 +13,7 @@
   word-wrap: break-word;
 }
 
-#tbl-request tbody tr {
+#tbl-issue tbody tr {
   cursor: pointer;
 }
 

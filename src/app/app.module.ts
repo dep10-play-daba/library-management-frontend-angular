@@ -6,6 +6,10 @@ import {MemberComponent} from "./member/member.component";
 import { HomeComponent } from './home/home.component';
 import { BookComponent } from './book/book.component';
 import { RequestsComponent } from './requests/requests.component';
+import {MdbTooltipModule} from "mdb-angular-ui-kit/tooltip";
+import { IssueComponent } from './issue/issue.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ReturnComponent } from './return/return.component';
 
 @NgModule({
   declarations: [
@@ -13,11 +17,17 @@ import { RequestsComponent } from './requests/requests.component';
     MemberComponent,
     HomeComponent,
     BookComponent,
-    RequestsComponent
+    RequestsComponent,
+    IssueComponent,
+    ReturnComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    MdbTooltipModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
