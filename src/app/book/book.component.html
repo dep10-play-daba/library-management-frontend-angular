@@ -2,7 +2,7 @@
   <section class="d-flex justify-content-between border-bottom p-2">
     <h2 class="m-0 align-self-center">Manage Books</h2>
     <button id="btn-new-user" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#new-book-modal">New Book</button>
+            data-bs-target="#new-book-modal" (click)="clearFields()">New Book</button>
   </section>
   <section class="p-2">
     <input id="txt-search" class="form-control text-center" type="text" placeholder="Search Books">
@@ -35,51 +35,65 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">Add New User</h1>
+        <h1 class="modal-title fs-5">Add New Book</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
         <div class="mb-3">
-          <label for="txt-id" class="form-label">User ID</label>
-          <input type="text" class="form-control text-center" id="txt-id" placeholder="Generated ID"
+          <label for="txt-id" class="form-label">ISBN</label>
+          <input type="text" class="form-control text-center" id="txt-id" placeholder="Eg. 12123-1231-21-2"
                  disabled>
         </div>
         <div class="mb-3">
-          <label for="txt-name" class="form-label">Username</label>
-          <input type="text" class="form-control text-center" id="txt-name" placeholder="Eg. Dasun Dilan">
+          <label for="txt-title" class="form-label">Title</label>
+          <input #title (change)="setBookTitle(title.value)" type="text" class="form-control text-center" id="txt-title" placeholder="Eg. Dasun Dilan">
           <div class="invalid-feedback">
-            Name can't be empty
+            Title can't be empty
           </div>
         </div>
         <div class="mb-3">
-          <label for="txt-contact" class="form-label">User Contact</label>
-          <input type="text" class="form-control text-center" id="txt-contact" placeholder="Eg. 077-1234567">
+          <label for="txt-author" class="form-label">Auther</label>
+          <input #author (change)="setAuthor(author.value)" type="text" class="form-control text-center" id="txt-author" placeholder="Eg. Ariyn Agawel">
           <div class="invalid-feedback">
-            Contact can't be empty
+            Author can't be empty
           </div>
         </div>
+        <div class="dropdown mb-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{bookType}}
+          </button>
+          <ul class="dropdown-menu overflow-scroll dropdown-menu-dark">
+            <li *ngFor="let category of types" value="{{category}}" (click)="setCategory(category)" class="dropdown-item">{{category}}</li>
+            <li><hr class="dropdown-divider"></li>
+            <li><input #customType class="dropdown-item" placeholder="enter new type" (change)="createCategory(customType)" ></li>
+          </ul>
+        </div>
         <div class="mb-3">
-          <label for="txt-address" class="form-label">User Address</label>
-          <input type="text" class="form-control text-center" id="txt-address" placeholder="Eg. #99/3, Galloluwa, Weliweriya">
-          <div class="invalid-feedback">
-            Address can't be empty
+          <label for="txt-rate" class="form-label">Initial rating</label>
+          <input #rating (change)="setBookRating(rating.value)" type="number" class="form-control text-center" id="txt-rate" placeholder="Eg. 10">
+<!--          <div class="invalid-feedback">-->
+<!--            Address can't be empty-->
+<!--          </div>-->
+        </div>
+
+        <div class="mb-3">
+          <label for="txt-copies" class="form-label">Number of Copies</label>
+          <input #copies (change)="setBookCopies(copies.value)" type="number" class="form-control text-center" id="txt-copies" placeholder="Eg. 10">
+          <!--          <div class="invalid-feedback">-->
+          <!--            Address can't be empty-->
+          <!--          </div>-->
+        </div>
+
+        <div class="d-flex flex-column align-items-center">upload Cover image below
+          <div class="cover-image">
+            <div class="file">
+              {{imageName}}
+              <input (change)="getfile($event)" class="inputfile" type="file" >
+            </div>
+
           </div>
         </div>
 
-        <div class="mb-3 d-flex justify-content-evenly">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Admin
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Member
-            </label>
-          </div>
-        </div>
       </div>
       <div class="modal-footer d-flex flex-row-reverse justify-content-between">
         <!--                    <div id="loader">-->
@@ -88,7 +102,7 @@
         <!--                    <button id="btn-save" type="button" class="btn btn-primary">Save Customer</button>-->
 
         <div id="btn-save" class="btn btn-primary ld-ext-right"
-             onclick="this.classList.toggle('running')">
+             onclick="this.classList.toggle('running')" (click)="saveBook()">
           Save Customer
           <div class="ld ld-ring ld-spin " id="loader"></div>
         </div>
@@ -101,7 +115,7 @@
   <div id="liveToast" class="toast" data-bs-autohide="true" data-bs-delay="1000" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <strong class="me-auto"></strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button"  class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
     </div>

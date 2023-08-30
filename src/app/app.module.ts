@@ -10,6 +10,7 @@ import {MdbTooltipModule} from "mdb-angular-ui-kit/tooltip";
 import { IssueComponent } from './issue/issue.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReturnComponent } from './return/return.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { ReturnComponent } from './return/return.component';
     BookComponent,
     RequestsComponent,
     IssueComponent,
-    ReturnComponent
+    ReturnComponent,
   ],
   imports: [
     BrowserModule,
     MdbTooltipModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

@@ -26,3 +26,19 @@
   scale: 1;
   opacity: 100;
 }
+.cover-image{
+  width: 300px;
+  position: relative;
+  height: 100px;
+  border: 4px dotted black;
+  .file{
+    position: relative;
+    z-index: 1;
+    .inputfile{
+      opacity: 0;
+      height: 6rem;
+      width: 300px;
+      top: 0px;
+    }
+  }
+}

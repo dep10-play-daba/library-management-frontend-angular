@@ -1,1 +1,48 @@
-<p>return works!</p>
+<main>
+  <section class="d-flex justify-content-between border-bottom p-2">
+    <h2 class="m-0 align-self-center">Return Books</h2>
+    <!--    <button id="btn-new-user" class="btn btn-primary" data-bs-toggle="modal"-->
+    <!--            data-bs-target="#new-user-modal">New User</button>-->
+  </section>
+  <section class="p-2">
+    <input id="txt-search" class="form-control text-center" type="text" placeholder="Search issued books">
+  </section>
+  <section class="p-2">
+    <table id="tbl-issue" class="table table-hover table-bordered">
+      <thead class="table-light">
+      <tr>
+        <th class="text-center">Request ID</th>
+        <th>Member ID</th>
+        <th class="role text-center">Username</th>
+        <th class="d-none d-xl-table-cell">Book Title</th>
+        <th class="contact text-center">Requested Date</th>
+        <th class="contact text-center">Issued Date</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-center">R001</td>
+        <td>M001</td>
+        <td class="name text-center">Nishan Akalanka</td>
+        <td class="d-none d-xl-table-cell">Hitman-2</td>
+        <td class="date text-center">12-10-2023</td>
+        <td class="date text-center">20-10-2023</td>
+        <td>
+          <div class="actions d-flex gap-3 justify-content-center">
+              <svg data-bs-toggle="tooltip" data-bs-title="return"  xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+            </svg>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td class="text-center" colspan="5">No request records are found!</td>
+      </tr>
+      </tfoot>
+    </table>
+  </section>
+</main>
