@@ -1,4 +1,11 @@
 export class Book {
-  constructor(private isbn:string,private title:string,private author:string,private rating:number,private copies:number,private category:string,private imageUrl:string) {
+  constructor(
+    public isbn:string,
+    public title:string,
+    public author:string,
+    public rating:number,
+    public copies:number,
+    public type:string,
+    public coverImage:string) {
   }
 }

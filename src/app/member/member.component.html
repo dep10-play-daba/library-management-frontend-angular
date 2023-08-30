@@ -20,12 +20,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td class="text-center">C001</td>
-        <td>Nishan Akalanka</td>
-        <td class="d-none d-xl-table-cell">Weliweriya, Gampaha</td>
-        <td class="contact text-center">077-1234567</td>
-        <td class="role text-center">Admin</td>
+      <tr *ngFor="let user of UserList">
+        <td class="text-center">M {{user.userId}}</td>
+        <td>{{user.name}}</td>
+        <td class="d-none d-xl-table-cell">{{user.address}}</td>
+        <td class="contact text-center">{{user.contact}}</td>
+        <td class="role text-center">{{user.role}}</td>
         <td>
           <div class="actions d-flex gap-3 justify-content-center">
             <svg data-bs-toggle="tooltip" data-bs-title="Edit User" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -66,7 +66,7 @@
       <div class="modal-body text-center">
         <div class="mb-3">
           <label for="txt-id" class="form-label">User ID</label>
-          <input type="text" class="form-control text-center" id="txt-id" placeholder="Generated ID"
+          <input type="text" #UserID (change)="setUserID(UserID.value)" class="form-control text-center" id="txt-id" placeholder="Generated ID"
                  disabled>
         </div>
         <div class="mb-3">

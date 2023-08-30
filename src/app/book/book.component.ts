@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Book} from '../dto/Book'
+import {query} from "@angular/animations";
 
 
 @Component({
@@ -11,117 +12,72 @@ import {Book} from '../dto/Book'
 
 
 export class BookComponent {
-  types:string[]=[''];
-  books = [
-    {id: 1, name:'Superman',urls:'../assets/images/book1.png'},
-    {id: 2, name:'Batman',urls:'../assets/images/book2.png'},
-    {id: 5, name:'BatGirl',urls:'../assets/images/book5.png'},
-    {id: 3, name:'Robin',urls:'../assets/images/book3.png'},
-    {id: 4, name:'Flash',urls:'../assets/images/book4.png'},
-    {id: 1, name:'Superman',urls:'../assets/images/book1.png'},
-    {id: 2, name:'Batman',urls:'../assets/images/book2.png'},
-    {id: 5, name:'BatGirl',urls:'../assets/images/book5.png'},
-    {id: 3, name:'Robin',urls:'../assets/images/book3.png'},
-    {id: 4, name:'Flash',urls:'../assets/images/book4.png'},
-    {id: 1, name:'Superman',urls:'../assets/images/book1.png'},
-    {id: 2, name:'Batman',urls:'../assets/images/book2.png'},
-    {id: 5, name:'BatGirl',urls:'../assets/images/book5.png'},
-    {id: 3, name:'Robin',urls:'../assets/images/book3.png'},
-    {id: 4, name:'Flash',urls:'../assets/images/book4.png'},
-    {id: 1, name:'Superman',urls:'../assets/images/book1.png'},
-    {id: 2, name:'Batman',urls:'../assets/images/book2.png'},
-    {id: 5, name:'BatGirl',urls:'../assets/images/book5.png'},
-    {id: 3, name:'Robin',urls:'../assets/images/book3.png'},
-    {id: 4, name:'Flash',urls:'../assets/images/book4.png'},
-    {id: 1, name:'Superman',urls:'../assets/images/book1.png'},
-    {id: 2, name:'Batman',urls:'../assets/images/book2.png'},
-    {id: 5, name:'BatGirl',urls:'../assets/images/book5.png'},
-    {id: 3, name:'Robin',urls:'../assets/images/book3.png'},
-    {id: 4, name:'Flash',urls:'../assets/images/book4.png'}
-  ];
-
-
-  baseApiUrl:string = "http://localhost:8080/library";
-  imageFile:any;
-  imageName:string;
-  bookIsbn:string ='1234-213-23-1';
-  bookTitle:string;
-  authorName:string;
-  bookRating:number;
-  bookCopies:number;
-  bookType:string;
-  bookUrl:string;
-
+  types:string[];
+  bookList:Book[]=[];
+  baseApiUrl:string;
+  public bookIsbn: string;
+  public bookTitle: string;
+  public authorName: string;
+  public bookRating: number;
+  public bookCopies: number;
+  public bookType: string;
+  public bookUrl: string;
+  public imageFile: any;
+  public imageName: string;
   constructor(private http:HttpClient) {
-    this.types=['science'];
-    this.bookIsbn='1234-213-23-1';
-    this.bookTitle='';
-    this.authorName='';
+
+    this.types=[''];
+    this.baseApiUrl="http://localhost:8080/library";
+    this.bookIsbn="";
+    this.bookTitle="";
+    this.authorName="";
     this.bookRating=0;
     this.bookCopies=0;
-    this.bookType='Select a Type';
-    this.baseApiUrl="http://localhost:8080/library";
-    this.bookUrl='';
-    this.imageName='';
+    this.bookType="Select a Type";
+    this.bookUrl="";
     this.imageFile;
+    this.imageName="";
+    this.bookList=[];
+
+
+    http.get<Array<Book>>('http://localhost:8080/library').subscribe(bookList =>{this.bookList=bookList as Array<Book>;
+      console.log(this.bookList)})
   }
+
   saveBook(){
     let book=new Book(this.bookIsbn,this.bookTitle,this.authorName,this.bookRating,this.bookCopies,this.bookType,this.bookUrl)
     const formData = new FormData();
-    // Store form name as "file" with file data
-
-    if (this.imageFile) {
-      formData.append("image", this.imageFile, this.imageName);
-    }
+    if (this.imageFile) {formData.append("image", this.imageFile, this.imageName);}
     formData.append('Book', new Blob([JSON.stringify(book)], {type: "application/json"}));
-    // Make http post request over api
-    // with formData as req
-    console.log(book);
-    this.http.post(this.baseApiUrl, formData)
-      .subscribe(resp => console.log(resp));
-this.clearFields();
+    this.http.post(this.baseApiUrl, formData).subscribe(resp => console.log(resp));
+    this.clearFields();
   }
+
   clearFields(){
-    this.bookIsbn='1234-213-23-1';
-    this.bookTitle='';
-    this.authorName='';
-    this.bookRating=0;
-    this.bookCopies=0;
-    this.bookType='Select a Type';
-    this.baseApiUrl="http://localhost:8080/library";
-    this.bookUrl='';
-    this.imageName='';
-    this.imageFile;
   }
+
   getfile(event: any) {
     console.log('working');
   this.imageFile=event.target.files[0];
   this.imageName=this.imageFile.name;
   }
-
-  setBookTitle(event:any) {
-    this.bookTitle=event;
-  }
-
-  setBookCopies(value: string) {
-    this.bookCopies=Number(value);
-  }
-
-  setBookRating(value: string) {
-    this.bookRating=Number(value);
-  }
-
-  setCategory(event:any) {
-    this.bookType=event;
-  }
-
-  setAuthor(value: string) {
-    this.authorName=value;
-  }
-
+  setBookTitle(event:any) {this.bookTitle=event;}
+  setBookCopies(value: string) {this.bookCopies=Number(value);}
+  setBookRating(value: string) {this.bookRating=Number(value);}
+  setCategory(event:any) {this.bookType=event;}
+  setAuthor(value: string) {this.authorName=value;}
   createCategory(event:any) {
     this.bookType=event.value;
     this.types.push(this.bookType);
     event.value='';
   }
+
+  queryForSearch(value: string) {
+    let params = new URLSearchParams();
+   params.append('q',value);
+    console.log(value);
+    this.http.get<Array<Book>>('http://localhost:8080/library?'+params.toString()).subscribe(bookList =>{this.bookList=bookList as Array<Book>;
+      console.log(this.bookList)})
+  }
 }
+

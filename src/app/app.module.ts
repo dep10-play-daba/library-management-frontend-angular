@@ -11,6 +11,9 @@ import { IssueComponent } from './issue/issue.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReturnComponent } from './return/return.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './login/login.component';
+import { SharedServiceComponent } from './shared-service/shared-service.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     RequestsComponent,
     IssueComponent,
     ReturnComponent,
+    LoginComponent,
+    SharedServiceComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

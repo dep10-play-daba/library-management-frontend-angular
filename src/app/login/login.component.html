@@ -1,0 +1,18 @@
+<div id="main" class="d-flex flex-column align-items-center" >
+  <div id="header" class="mt-2 text-center d-flex justify-content-center align-items-center">
+    <h1>Enter Login Info </h1>
+  </div>
+  <div>
+    <form id="form" class="row g-3 d-flex flex-column align-items-center" name="form" (ngSubmit)="logins()" #f="ngForm">
+      <div class=" text-center d-flex flex-column">
+        <label for="username">Enter UserName</label>
+        <input #userName name="username"  [(ngModel)]="model.username" type="text" class="form-control mt-2" id="username" placeholder="Enter the UserName">
+      </div>
+      <div class="text-center mt-4 d-flex flex-column">
+        <label for="password" class="mt-4">Enter Password</label>
+        <input #password  type="password" class="form-control" name="password" id="password" [(ngModel)]="model.password" placeholder="password">
+      </div>
+      <button #login class="btn btn-primary " id="submitButton">LogIn</button>
+    </form>
+  </div>
+</div>
