@@ -22,4 +22,14 @@ export class MemberComponent {
   setUserID(value: string) {
 
   }
+
+  togglePasswordField(password: HTMLInputElement) {
+
+    password.setAttribute('type',password.getAttribute('type')=='password'?'text':'password');
+  }
+
+  clearForm() {
+    let elements=document.getElementsByClassName('inputs');
+
+  }
 }

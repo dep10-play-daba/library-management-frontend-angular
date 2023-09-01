@@ -10,10 +10,11 @@ import {MdbTooltipModule} from "mdb-angular-ui-kit/tooltip";
 import { IssueComponent } from './issue/issue.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReturnComponent } from './return/return.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import { SharedServiceComponent } from './shared-service/shared-service.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {RequestInterceptor} from "./request.interceptor";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
